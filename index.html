@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive AR Business Card</title>
+  <!-- A-Frame Library -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <!-- AR.js WebXR -->
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar-nft.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+  
+  <!-- A-Frame Scene for markerless AR -->
+  <a-scene vr-mode-ui="enabled: false" embedded arjs>
+    
+    <!-- Business card or any object -->
+    <a-plane position="0 0 -1" rotation="0 0 0" width="0.6" height="0.4" color="#FFC107">
+      <a-text value="Your AR Business Card" color="#000" align="center" position="0 0.1 0.01" scale="0.4 0.4 0.4"></a-text>
+      
+      <!-- Button -->
+      <a-plane position="0 -0.15 0.01" width="0.3" height="0.1" color="#008CBA" class="clickable">
+        <a-text value="Click Me!" color="#FFF" align="center" position="0 0 0.01" scale="0.4 0.4 0.4"></a-text>
+      </a-plane>
+    </a-plane>
+    
+    <!-- AR camera -->
+    <a-entity camera></a-entity>
+  
+  </a-scene>
+
+  <!-- JavaScript to handle click events -->
+  <script>
+    AFRAME.registerComponent('button-click', {
+      init: function () {
+        var button = this.el;
+        button.addEventListener('click', function () {
+          alert('Button clicked!'); // Action to perform on click
+        });
+      }
+    });
+
+    // Add the component to the button
+    document.querySelector('.clickable').setAttribute('button-click', '');
+  </script>
+
+</body>
+</html>
